@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using практика.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<практикаContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("практикаContext") ?? throw new InvalidOperationException("Connection string 'практикаContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
